@@ -1,34 +1,38 @@
 #ifndef _KULBAEVA_MATHTASK_H_
 #define _KULBAEVA_MATHTASK_H_
 
+#include <iostream>
 #include <string>
-using namespace std;
-//функция контроля вводимых данных
-bool UserInput(string input) {
-//если строка пустая - ввод некорректен
-  if (input.empty()) return false;
-try{
-//преобразование введенного значения в тип
-int number = stoi(input);
-}
-catch (...) //если возникла ошибка в блоке try
-{ return false; }
-return true;
-}
-//метод ввода данных
- void EnterDigit(int& varLink, const string& label){
-  string raw_input;
-  cout << label << "=";
-  getline(cin, raw_input);
-  while (!UserInput(raw_input)) {
-    cout << label << " = ";
-    getline(cin, raw_input);
-  }
-varLink - stoi(raw_input);
- }
-//вычисление площади прямоугольника
-int CalcRectangleArea(int NumberA, int NumberB) {
-  return NumberA * NumberB;
-}
-#endif
 
+using namespace std;
+
+// Контроль корректности ввода данных
+bool UserInput(const string& input) {
+    if (input.empty()) return false;  // если строка пустая - ввод некорректен
+    try {
+        size_t pos;
+        int number = stoi(input, &pos);  // Конвертировать строку в число
+        if (pos != input.size()) return false;  // Остались ненужные символы
+        if (number < 0) return false;          // Отрицательные числа запрещены
+    } catch(...) {                             // Любая ошибка преобразования
+        return false;
+    }
+    return true;
+}
+
+// Метод ввода данных
+void EnterDigit(int& varLink, const string& label) {
+    string raw_input;
+    do {
+        cout << label << ": ";
+        getline(cin, raw_input);  // Читаем всю строку целиком
+    } while(!UserInput(raw_input));  // Пока ввод некорректен, запрашиваем заново
+    varLink = stoi(raw_input);       // Преобразовываем в число и сохраняем
+}
+
+// Вычисление площади прямоугольника
+int CalcRectangleArea(int NumberA, int NumberB) {
+    return NumberA * NumberB;
+}
+
+#endif /* _KULBAEVA_MATHTASK_H_ */
