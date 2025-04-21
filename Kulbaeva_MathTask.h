@@ -11,20 +11,20 @@ try{
 //преобразование введенного значения в тип
 int number = stoi(input);
 }
-catch (…) //если возникла ошибка в блоке try
+catch (...) //если возникла ошибка в блоке try
 { return false; }
 return true;
 }
 //метод ввода данных
- void Enter Digit(int& var Link, const string& label){
+ void EnterDigit(int& varLink, const string& label){
   string raw_input;
-  count << label << "=";
+  cout << label << "=";
   getline(cin, raw_input);
   while (!UserInput(raw_input)) {
     cout << label << " = ";
     getline(cin, raw_input);
   }
-varlink - stoi(raw_input);
+varLink - stoi(raw_input);
  }
 //вычисление площади прямоугольника
 int CalcRectangleArea(int NumberA, int NumberB) {
