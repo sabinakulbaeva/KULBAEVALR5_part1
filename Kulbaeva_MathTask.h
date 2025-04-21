@@ -31,3 +31,4 @@ int CalcRectangleArea(int NumberA, int NumberB) {
   return NumberA * NumberB;
 }
 #endif
+
